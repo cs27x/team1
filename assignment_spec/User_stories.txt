@@ -1,8 +1,0 @@
-User Stories
-I want to be able to see, at a glance, the closest places where I can use my meal plan.
-I would like to be able to filter (on/off-campus, meal plan/money, open now, type of food, delivery option…) and sort (distance, price, closing soon…)  a list of Vanderbilt dining locations.
-As someone who doesn’t like cafeteria food, I would like to know which restaurants are on the vandy card.
-As a busy student, I would like to check what food delivery options are open. 
-As a new student, I want an easy way to determine what my dining options are.
-As someone who tends to eat late dinners, I want to know what dining locations are available at when I check the app late at night (ex. 10pm).
-As someone who likes to plan their day ahead of time, I would like to look up when food locations will be open at a certain later date/time.
