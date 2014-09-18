@@ -29,16 +29,13 @@ Vandy Food Finder will provide an intuitive interface that allows users to find 
 2. The Parse platform provides a complete backend solution for server and datebase. You can refer to ParseÕs Android guide for details.
     https://parse.com/docs/android_guide
 
-3. You may want to use the Google Map Android API to deal with the map, location, distance problems.
-    https://developers.google.com/maps/documentation/android/
 
 ## Evaluation Rubrics
 
-There are 80 total points for this application.
+There are 100 total points for this application.
 
-0. (10 pts) - I want to be able to see, at a glance, the closest places where I can use my meal plan. Evaluation process:
+0. (15 pts) - I want to be able to see, at a glance, the closest places where I can use my meal plan. Evaluation process:
     - list view sorted by distance
-    - (10 pts) map view
 
 1. (20 pts) - I would like to be able to filter (on/off-campus, meal plan/money, open now, type of food, delivery optionÉ) and sort (distance, price, closing soonÉ)  a list of Vanderbilt dining locations. Evaluation process:
     - (15 pts) A diversity of filter and sort options
@@ -56,20 +53,14 @@ There are 80 total points for this application.
     - Unfiltered list view
 
 5. (10 pts) - As someone who tends to eat late dinners, I want to know what dining locations are available at when I check the app late at night (ex. 10pm). Evaluation process:
-    - (3 pts) Map view
     - (3 pts) List view
     - (3 pts) Filter and sort options
-    - (1 pts) Basic Information, like type of food, payment options, close time
+    - (4 pts) Basic Information, like type of food, payment options, close time
 
 6. (5 pts) - As someone who likes to plan their day ahead of time, I would like to look up when food locations will be open at a certain later date/time. Evaluation process:
     - (5 pts) Input a time and see a list of locations are open at that time
 
-7. (20 pts) - Use of a server to aggregate name of each venue, hours of operation, location, and all other data relevant to users. Evaluation process:
-    - Use of simple and modifiable database.
-    - Use of parse recommended.
-    - Fields for all necessary data to fulfill user stories
-
-8. (30 pts) Uses consistent code style with simple, effective uses of Java for a highly readable, adaptable code base. Evaluation process:
+7. (30 pts) Uses consistent code style with simple, effective uses of Java for a highly readable, adaptable code base. Evaluation process:
     - (10 pts) Orthogonal classes and methods to minimize unnecessary code.
     - (10 pts) Simple populating and filtering of list views to minimize response times
     - (10 pts) Efficient handling of distance to locations using phoneÕs location data.
