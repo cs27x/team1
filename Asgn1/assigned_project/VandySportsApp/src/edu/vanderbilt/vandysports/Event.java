@@ -1,6 +1,6 @@
 package edu.vanderbilt.vandysports;
 
-java.util.Date;
+import java.util.Date;
 
 public class Event {
 
