@@ -2,13 +2,15 @@ package edu.vanderbilt.vandysports;
 
 public class Team
 {
-	public final String Name;
+	public final String Sport;
 	public final String Website_Link;
+	public final String Gender;
 	
 	
-	public Team(String name, String link)
+	public Team(String sport, String link, String gender)
 	{
-		Name=name;
+		Sport=sport;
 		Website_Link=link;
+		Gender=gender;
 	}
 }
