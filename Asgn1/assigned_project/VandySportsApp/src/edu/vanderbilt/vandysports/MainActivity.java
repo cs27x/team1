@@ -1,10 +1,13 @@
 package edu.vanderbilt.vandysports;
 
+import java.util.Vector;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import edu.vanderbilt.vandysports.R;
+
 
 public class MainActivity extends Activity {
 
@@ -12,6 +15,24 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        testEventCrawler();
+    }
+    
+    public void testEventCrawler() {
+    	
+    	new Thread(new Runnable() {
+    	    public void run() {
+    	    	EventCrawler ec = new EventCrawler();
+    			Vector<Event> list = ec.getListEvent();
+    			for (int i=0; i<list.size(); i++) {
+    				Event e = list.get(i);
+    				System.out.println(e.event+" "+e.location+" "+e.time);
+    			}
+    	    }
+    	  }).start();
+    	
+    	
     }
 
     @Override
