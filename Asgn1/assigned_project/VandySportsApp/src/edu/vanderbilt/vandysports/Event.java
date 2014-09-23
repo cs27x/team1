@@ -1,10 +1,12 @@
 package edu.vanderbilt.vandysports;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Event {
+public class Event implements Serializable {
 
-    public final Team mTeam;
+	private static final long serialVersionUID = 1L;
+	public final Team mTeam;
     public final Date date;
     public final String event;
     public final String location;

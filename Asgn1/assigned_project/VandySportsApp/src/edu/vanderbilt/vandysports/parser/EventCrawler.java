@@ -1,9 +1,10 @@
-package edu.vanderbilt.vandysports;
+package edu.vanderbilt.vandysports.parser;
 
 import android.annotation.SuppressLint;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -11,8 +12,15 @@ import java.util.Vector;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class EventCrawler {
+import edu.vanderbilt.vandysports.Event;
+import edu.vanderbilt.vandysports.Team;
 
+public class EventCrawler implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Vector<Event> listEvent;
 	private Vector<String[]> listSports;
 
