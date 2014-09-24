@@ -1,17 +1,19 @@
 package Objects;
 
-import java.util.Date;
-import java.util.Vector;
+import java.util.*;
+import parser.EventCrawler;
 
 public class DataModel {
 
     private final Vector<Event> listEvent;
     private final Vector<Team> listTeam;
-
+    private Vector<Event> filteredList;
+    
     public DataModel()
     {
-        this.listEvent = new Vector<Event>();
-        this.listTeam = new Vector<Team>();
+    	EventCrawler ec = new EventCrawler();
+    	listEvent = ec.getListEvent();
+    	listTeam = new Vector<Team>();
     }
 
     public Vector<Event> getAllEvents()
@@ -24,19 +26,46 @@ public class DataModel {
         return listTeam;
     }
 
-    public Vector<Event> getEventsOn(Date date)
+    public Vector<Event> getEventsOn(Date specdate)
     {
-        return null;
+    	Iterator itr = listEvent.iterator();
+    	while(itr.hasNext())
+    	{
+    		Event e = (Event) itr.next();
+    		if(e.date==specdate)
+    		{
+    			filteredList.add(e);
+    		}
+    	}
+        return filteredList;
     }
 
     public Vector<Event> getEventsBetween(Date date1, Date date2)
     {
-        return null;
+    	Iterator itr = listEvent.iterator();
+    	while(itr.hasNext())
+    	{
+    		Event e = (Event) itr.next();
+    		if(e.date.compareTo(date1)>0&&e.date.compareTo(date2)<0)
+    		{
+    			filteredList.add(e);
+    		}
+    	}
+        return filteredList;
     }
 
     public Vector<Event> getEventsFrom(Team team)
     {
-        return null;
+    	Iterator itr = listEvent.iterator();
+    	while(itr.hasNext())
+    	{
+    		Event e = (Event) itr.next();
+    		if(e.mTeam==team)
+    		{
+    			filteredList.add(e);
+    		}
+    	}
+        return filteredList;
     }
 
     public Vector<Event> getEventsFrom(Vector<Team> teams)
