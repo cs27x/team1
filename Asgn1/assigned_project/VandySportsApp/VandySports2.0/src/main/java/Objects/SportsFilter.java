@@ -11,11 +11,6 @@ public class SportsFilter {
 	public static void main(String[] args)
 	{
 		DataModel dm = new DataModel();
-		Vector<Event> allEvents = dm.getAllEvents();
-		for(Event event : allEvents)
-		{
-			event.printEvent();
-		}
 		//Options for filters here
 
 		//getEventsOnDate(dm);
@@ -56,12 +51,9 @@ public class SportsFilter {
 		Team selectedTeam = null;
 		for(Team team_ : sports)
 		{
-			System.out.println(team_.getGender() + "'s " + team_.getSport() + " vs. " + team);
-			
 			if ((team_.getGender() + "'s " + team_.getSport()).equals(team))
 			{
 				selectedTeam = team_;
-				System.out.println("SELECTED: " + team_.getGender() + "'s " + team_.getSport());
 			}
 		}
 		if (selectedTeam == null)
