@@ -62,14 +62,11 @@ public class DataModel {
 
     public Vector<Event> getEventsFrom(Team team)
     {
-    	System.out.print("Searching for ");
-    	team.printTeam();
     	Vector<Event> filteredList = new Vector<Event>();
     	for(Event e: listEvent)
     	{
     		if(e.getTeam().equals(team))
     		{
-    			e.printEvent();
     			filteredList.add(e);
     		}
     	}

@@ -34,7 +34,7 @@ public class Team implements Serializable {
 	
 	public boolean equals(Team team)
 	{
-		return this.gender_.toLowerCase() == team.gender_.toLowerCase() 
-				&& this.sport_.toLowerCase() == team.sport_.toLowerCase();
+		return this.gender_.toLowerCase().equals(team.gender_.toLowerCase()) 
+				&& this.sport_.toLowerCase().equals(team.sport_.toLowerCase());
 	}
 }
