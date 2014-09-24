@@ -16,4 +16,9 @@ public class Team implements Serializable {
 		Website_Link=link;
 		Gender=gender;
 	}
+	
+	public void printTeam()
+	{
+		System.out.println(Gender + "'s " + Sport );
+	}
 }

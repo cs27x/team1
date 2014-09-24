@@ -19,4 +19,10 @@ public class Event implements Serializable {
         this.location = location;
         this.time = time;
     }
+    
+    public void printEvent()
+    {
+    	mTeam.printTeam();
+    	System.out.println(event + " at " + location + " on " + date);
+    }
 }
