@@ -31,4 +31,9 @@ public class Team implements Serializable {
 	{
 		System.out.println(gender_ + "'s " + sport_ );
 	}
+	
+	public boolean equals(Team team)
+	{
+		return this.gender_ == team.gender_ && this.sport_ == team.sport_;
+	}
 }
