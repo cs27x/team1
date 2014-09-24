@@ -8,13 +8,12 @@ public class DataModel {
 
     private final Vector<Event> listEvent;
     private final Vector<Team> listTeam;
-    private Vector<Event> filteredList;
     
     public DataModel()
     {
     	EventCrawler ec = new EventCrawler();
     	listEvent = ec.getListEvent();
-    	listTeam=null;
+    	listTeam = new Vector<Team>();
     	for (int i = 0; i < ec.getListSports().size(); i++)
     	{
     		Team t = new Team(ec.getListSports().get(i)[0],
@@ -36,11 +35,10 @@ public class DataModel {
 
     public Vector<Event> getEventsOn(Date specdate)
     {
-    	Iterator itr = listEvent.iterator();
-    	while(itr.hasNext())
+    	Vector<Event> filteredList = new Vector<Event>();
+    	for(Event e: listEvent)
     	{
-    		Event e = (Event) itr.next();
-    		if(e.date==specdate)
+    		if (e.date.compareTo(specdate)==0)
     		{
     			filteredList.add(e);
     		}
@@ -50,10 +48,9 @@ public class DataModel {
 
     public Vector<Event> getEventsBetween(Date date1, Date date2)
     {
-    	Iterator itr = listEvent.iterator();
-    	while(itr.hasNext())
+    	Vector<Event> filteredList = new Vector<Event>();
+    	for (Event e : listEvent)
     	{
-    		Event e = (Event) itr.next();
     		if(e.date.compareTo(date1)>0&&e.date.compareTo(date2)<0
     				||e.date.compareTo(date1)==0||e.date.compareTo(date2)==0)
     		{
@@ -65,10 +62,9 @@ public class DataModel {
 
     public Vector<Event> getEventsFrom(Team team)
     {
-    	Iterator itr = listEvent.iterator();
-    	while(itr.hasNext())
+    	Vector<Event> filteredList = new Vector<Event>();
+    	for(Event e: listEvent)
     	{
-    		Event e = (Event) itr.next();
     		if(e.mTeam==team)
     		{
     			filteredList.add(e);
@@ -77,9 +73,9 @@ public class DataModel {
         return filteredList;
     }
 
-    public Vector<Event> getEventsFrom(Vector<Team> teams)
+    /*public Vector<Event> getEventsFrom(Vector<Team> teams)
     {
         Iterator itr = teams.iterator();
         while()
-    }
+    }*/
 }
