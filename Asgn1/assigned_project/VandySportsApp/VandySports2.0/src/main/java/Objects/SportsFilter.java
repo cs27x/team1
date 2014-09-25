@@ -17,7 +17,8 @@ public class SportsFilter {
 		{
 			System.out.println("\n\nWhat would you like to see?\n  Please enter the number of your search type.");
 			System.out.print("\t1. Filter by Single Date\n\t2. Filter by Single Team\n\t3. See Soonest "
-					+ "Upcoming Event(s)\n\t4. See All Events\n\t5. See this Week's Events\n\tEnter 0 to quit\n\nEnter Selection: ");
+					+ "Upcoming Event(s)\n\t4. See All Events\n\t5. See this Week's Events\n\t6. List of team's ESPN pages"
+					+ "\n\tEnter 0 to quit\n\nEnter Selection: ");
 
 			int selection = scanner.nextInt();
 			scanner.nextLine();
@@ -41,6 +42,9 @@ public class SportsFilter {
 					break;
 				case 5:
 					printThisWeekEvents(dm);
+					break;
+				case 6:
+					printTeamLinks(dm);
 					break;
 				default:
 					System.out.println("Invalid Entry, please try again!\n");
@@ -136,6 +140,15 @@ public class SportsFilter {
 		for (Event event : events)
 		{
 			event.printEvent();
+		}
+	}
+	
+	public static void printTeamLinks(DataModel dm)
+	{
+		for (Team team : dm.getAllTeams())
+		{
+			team.printTeam();
+			System.out.println("\t" + team.getLink());
 		}
 	}
 	

@@ -27,9 +27,14 @@ public class Team implements Serializable {
 		return sport_;
 	}
 	
+	public String getLink()
+	{
+		return websiteLink_;
+	}
+	
 	public void printTeam()
 	{
-		System.out.println(gender_ + "'s " + sport_ );
+		System.out.println(gender_ + "'s " + sport_);
 	}
 	
 	public boolean equals(Team team)
