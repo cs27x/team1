@@ -17,8 +17,13 @@ public class SportsFilter {
 		{
 			System.out.println("\n\nWhat would you like to see?\n  Please enter the number of your search type.");
 			System.out.print("\t1. Filter by Single Date\n\t2. Filter by Single Team\n\t3. See Soonest "
+<<<<<<< HEAD
 					+ "Upcoming Event(s)\n\t4. See All Events\n\t5. See this Week's Events\n\t6. List of team's ESPN pages\n\t7. Filter by Multiple Teams"
 					+ "\n\tEnter 0 to quit\n\nEnter Selection: ");
+=======
+					+ "Upcoming Event(s)\n\t4. See All Events\n\t5. See this Week's Events\n\t6. List of team's ESPN pages"
+					+ "\n\t7. See Calendar of events\n\t8. Filter by Multiple Teams\n\tEnter 0 to quit\n\nEnter Selection: ");
+>>>>>>> feat/dataModel
 
 			int selection = scanner.nextInt();
 			scanner.nextLine();
@@ -47,6 +52,9 @@ public class SportsFilter {
 					printTeamLinks(dm);
 					break;
 				case 7:
+					printMultiTeamsEvents(dm,scanner);
+					break;
+				case 8:
 					printMultiTeamsEvents(dm,scanner);
 					break;
 				default:
@@ -85,6 +93,46 @@ public class SportsFilter {
 			}
 		}
 	}	
+	
+<<<<<<< HEAD
+	private static void printMultiTeamsEvents(DataModel dm, Scanner scanner) {
+		// print Vanderbilt teams
+		System.out.println("Available Teams:");
+		Vector<Team> sports = dm.getAllTeams();
+		for (Team team_ : sports) {
+			team_.printTeam();
+		}
+		Vector<Event> events = new Vector<Event>();
+		System.out.print("Enter Teams (Format - '[Team]'s [Sport] | '[Team]'s [Sport] | ...): ");
+		String team = scanner.nextLine();
+		//turn string into team objects
+		//get teams user is interested in
+		Vector<Team> selectedTeams = stringToTeams(team, sports);
+		if (selectedTeams == null || selectedTeams.size()==0)
+		{
+			return;
+		}
+		for (Team selectedTeam: selectedTeams)
+=======
+	private static void getEventsCalendar(DataModel dm)
+	{
+		//print events for next calendar week
+		System.out.println("Here is a calendar of all the upcoming events");
+		Vector<Event> events = dm.getAllEvents();
+		Iterator<Event> itr = events.iterator();
+		while(itr.hasNext())
+>>>>>>> feat/dataModel
+		{
+			events = dm.getEventsFrom(selectedTeam);
+			//print events
+			System.out.println("Events for " + selectedTeam.getGender() + "'s " + selectedTeam.getSport() + ": " + events.size());
+			for (Event event : events)
+			{
+				event.printEvent();
+				System.out.println("");
+			}
+		}
+	}
 	
 	private static void printMultiTeamsEvents(DataModel dm, Scanner scanner) {
 		// print Vanderbilt teams
@@ -186,6 +234,23 @@ public class SportsFilter {
 		int month = Integer.parseInt(rawDate[1]);
 		int day = Integer.parseInt(rawDate[2]);
 		return new Date(year - 1900, month - 1, day);
+	}
+	
+	private static Vector<Team> stringToTeams(String team, Vector<Team> sports)
+	{
+		Vector<Team> selectedTeams = new Vector<Team>();
+		String[] teamArray = team.split(" \\| ");
+		for (String teamOne:teamArray) {
+			Team t = stringToTeam(teamOne, sports);
+			if (t!=null)
+				selectedTeams.add(t);
+		}
+		if (selectedTeams.size()==0)
+		{
+			System.out.println("Sorry, there is no valid team entry!");
+			return null;
+		}
+		return selectedTeams;
 	}
 	
 	private static Team stringToTeam(String team, Vector<Team> sports)

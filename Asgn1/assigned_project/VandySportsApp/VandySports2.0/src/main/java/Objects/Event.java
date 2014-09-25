@@ -42,6 +42,7 @@ public class Event implements Serializable {
     	+ months[date.getMonth()] + " " + (date.getDate() + 1) + ", " + (date.getYear()+1900));
     }
     
+    @SuppressWarnings("deprecation")
     public void printDate()
     {
     	System.out.println(days[date.getDay()] + " " 

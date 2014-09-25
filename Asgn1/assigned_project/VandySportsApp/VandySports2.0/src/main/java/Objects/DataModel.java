@@ -23,6 +23,16 @@ public class DataModel {
     	}
     }
 
+    public DataModel(Vector<Event> events)
+    {
+        final Set<Team> teams = new HashSet<Team>();
+        for (Event e: events) {
+            teams.add(e.getTeam());
+        }
+        listTeam = new Vector<Team>(teams);
+        listEvent = new Vector<Event>(events);
+    }
+
     public Vector<Event> getAllEvents()
     {
         return listEvent;
