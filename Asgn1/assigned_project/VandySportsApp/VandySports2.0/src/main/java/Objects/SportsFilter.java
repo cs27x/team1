@@ -107,7 +107,7 @@ public class SportsFilter {
 		{
 			events = dm.getEventsFrom(selectedTeam);
 			//print events
-			System.out.println("Events for " + team + ": " + events.size());
+			System.out.println("Events for " + selectedTeam.getGender() + "'s " + selectedTeam.getSport() + ": " + events.size());
 			for (Event event : events)
 			{
 				event.printEvent();
