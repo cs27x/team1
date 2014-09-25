@@ -18,7 +18,7 @@ public class SportsFilter {
 			System.out.println("\n\nWhat would you like to see?\n  Please enter the number of your search type.");
 			System.out.print("\t1. Filter by Single Date\n\t2. Filter by Single Team\n\t3. See Soonest "
 					+ "Upcoming Event(s)\n\t4. See All Events\n\t5. See this Week's Events\n\t6. List of team's ESPN pages"
-					+ "\n\t7. See Calendar of events\n\tEnter 0 to quit\n\nEnter Selection: ");
+					+ "\n\t7. See Calendar of events\n\t8. Filter by Multiple Teams\n\tEnter 0 to quit\n\nEnter Selection: ");
 
 			int selection = scanner.nextInt();
 			scanner.nextLine();
@@ -48,6 +48,9 @@ public class SportsFilter {
 					break;
 				case 7:
 					getEventsCalendar(dm);
+					break;
+				case 8:
+					printMultiTeamsEvents(dm,scanner);
 					break;
 				default:
 					System.out.println("Invalid Entry, please try again!\n");
@@ -105,6 +108,36 @@ public class SportsFilter {
 			}
 		}
 		
+	}
+	
+	private static void printMultiTeamsEvents(DataModel dm, Scanner scanner) {
+		// print Vanderbilt teams
+		System.out.println("Available Teams:");
+		Vector<Team> sports = dm.getAllTeams();
+		for (Team team_ : sports) {
+			team_.printTeam();
+		}
+		Vector<Event> events = new Vector<Event>();
+		System.out.print("Enter Teams (Format - '[Team]'s [Sport] | '[Team]'s [Sport] | ...): ");
+		String team = scanner.nextLine();
+		//turn string into team objects
+		//get teams user is interested in
+		Vector<Team> selectedTeams = stringToTeams(team, sports);
+		if (selectedTeams == null || selectedTeams.size()==0)
+		{
+			return;
+		}
+		for (Team selectedTeam: selectedTeams)
+		{
+			events = dm.getEventsFrom(selectedTeam);
+			//print events
+			System.out.println("Events for " + selectedTeam.getGender() + "'s " + selectedTeam.getSport() + ": " + events.size());
+			for (Event event : events)
+			{
+				event.printEvent();
+				System.out.println("");
+			}
+		}
 	}
 	
 	private static void printTeamEvents(DataModel dm, Scanner scanner)
@@ -177,6 +210,23 @@ public class SportsFilter {
 		int month = Integer.parseInt(rawDate[1]);
 		int day = Integer.parseInt(rawDate[2]);
 		return new Date(year - 1900, month - 1, day);
+	}
+	
+	private static Vector<Team> stringToTeams(String team, Vector<Team> sports)
+	{
+		Vector<Team> selectedTeams = new Vector<Team>();
+		String[] teamArray = team.split(" \\| ");
+		for (String teamOne:teamArray) {
+			Team t = stringToTeam(teamOne, sports);
+			if (t!=null)
+				selectedTeams.add(t);
+		}
+		if (selectedTeams.size()==0)
+		{
+			System.out.println("Sorry, there is no valid team entry!");
+			return null;
+		}
+		return selectedTeams;
 	}
 	
 	private static Team stringToTeam(String team, Vector<Team> sports)
