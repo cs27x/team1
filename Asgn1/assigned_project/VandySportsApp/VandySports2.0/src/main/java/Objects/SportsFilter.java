@@ -17,7 +17,7 @@ public class SportsFilter {
 		{
 			System.out.println("\n\nWhat would you like to see?\n  Please enter the number of your search type.");
 			System.out.print("\t1. Filter by Single Date\n\t2. Filter by Single Team\n\t3. See Soonest "
-					+ "Upcoming Event(s)\n\t4. See All Events\n\tEnter 0 to quit\n\nEnter Selection: ");
+					+ "Upcoming Event(s)\n\t4. See All Events\n\t5. See this Week's Events\n\tEnter 0 to quit\n\nEnter Selection: ");
 
 			int selection = scanner.nextInt();
 			scanner.nextLine();
@@ -38,6 +38,9 @@ public class SportsFilter {
 					break;
 				case 4:
 					printAllEvents(dm);
+					break;
+				case 5:
+					printThisWeekEvents(dm);
 					break;
 				default:
 					System.out.println("Invalid Entry, please try again!\n");
@@ -150,7 +153,7 @@ public class SportsFilter {
 	private static Date incrementDay(Date date)
 	{
 		//Rapidly seeing the superiority of the calendar class
-		Date datecopy = date;
+		Date datecopy = new Date(date.getYear(), date.getMonth(), date.getDate());
 		int febDays = 28;
 		if ((datecopy.getYear() + 1900) % 400 == 0 || ((datecopy.getYear() + 1900) % 4 == 0 
 				&& (datecopy.getYear() + 1900) % 100 != 0))
@@ -158,16 +161,18 @@ public class SportsFilter {
 			febDays = 29;
 		}
 		int[] month_lengths =  {31, febDays, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}; 
-		if (datecopy.getDate() + 1 > month_lengths[datecopy.getMonth()])
+		if (datecopy.getDate() > month_lengths[datecopy.getMonth()])
 		{
 			if (datecopy.getMonth() == 11)
 			{
-				datecopy.setYear(datecopy.getYear()+1);
+				datecopy.setYear(datecopy.getYear() + 1);
 				datecopy.setMonth(0);
+				datecopy.setDate(1);
 			}
 			else
 			{
 				datecopy.setMonth(datecopy.getMonth() + 1);
+				datecopy.setDate(1);
 			}
 		}
 		else
@@ -175,6 +180,29 @@ public class SportsFilter {
 			datecopy.setDate(datecopy.getDate() + 1);
 		}
 		return datecopy;
+	}
+	
+	private static Vector<Event> getDateRangeEvents(DataModel dm, Date startdate, int days)
+	{
+		Date enddate = startdate;
+		for (int i = 0; i <= days; i++)
+		{
+			enddate = incrementDay(enddate);
+		}
+		return dm.getEventsBetween(startdate, enddate);
+	}
+
+	@SuppressWarnings("deprecation")
+	private static void printThisWeekEvents(DataModel dm)
+	{
+		Date date = new Date();
+		System.out.println("The week of " + (date.getMonth()+1) + "/" + date.getDate() 
+				+ "/" + (date.getYear()+1900) + "'s events: ");
+		Vector<Event> filteredEvents = getDateRangeEvents(dm, new Date(), 7);
+		for (Event event : filteredEvents)
+		{
+			event.printEvent();
+		}
 	}
 	
 	private static void printAllEvents(DataModel dm)

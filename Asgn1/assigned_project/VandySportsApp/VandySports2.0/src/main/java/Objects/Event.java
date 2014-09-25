@@ -34,6 +34,6 @@ public class Event implements Serializable {
     {
     	mTeam.printTeam();
     	System.out.println("\t" + "at " + location + " on " + days[date.getDay()] + " " 
-    	+ months[date.getMonth()] + " " + (date.getDate() + 1) + ", " + (date.getYear()+1900));
+    	+ months[date.getMonth()] + " " + (date.getDate()) + ", " + (date.getYear()+1900));
     }
 }

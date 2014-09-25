@@ -51,8 +51,7 @@ public class DataModel {
     	Vector<Event> filteredList = new Vector<Event>();
     	for (Event e : listEvent)
     	{
-    		if(e.date.compareTo(date1)>0&&e.date.compareTo(date2)<0
-    				||e.date.compareTo(date1)==0||e.date.compareTo(date2)==0)
+    		if(e.date.compareTo(date1)>=0 && e.date.compareTo(date2)<=0)
     		{
     			filteredList.add(e);
     		}
