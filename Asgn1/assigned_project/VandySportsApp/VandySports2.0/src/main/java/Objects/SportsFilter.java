@@ -32,7 +32,7 @@ public class SportsFilter {
 					getEventsOnDate(dm,scanner);
 					break;
 				case 2: 
-					getTeamEvents(dm,scanner);
+					printTeamEvents(dm,scanner);
 					break;
 				case 3:
 					printNextEvent(dm);
@@ -83,7 +83,7 @@ public class SportsFilter {
 		}
 	}	
 	
-	private static void getTeamEvents(DataModel dm, Scanner scanner)
+	private static void printTeamEvents(DataModel dm, Scanner scanner)
 	{
 		//print Vanderbilt teams
 		System.out.println("Available Teams:");
@@ -92,25 +92,18 @@ public class SportsFilter {
 		{
 			team_.printTeam();
 		}
-		//get team user is interested in
+		Vector<Event> events = new Vector<Event>();
 		System.out.print("Enter a Team (Format - '[Team]'s [Sport]): ");
 		String team = scanner.nextLine();
 		//turn string into a team object
-		Team selectedTeam = null;
-		for(Team team_ : sports)
-		{
-			if ((team_.getGender() + "'s " + team_.getSport()).equals(team))
-			{
-				selectedTeam = team_;
-			}
-		}
+		//get team user is interested in
+		Team selectedTeam = stringToTeam(team, sports);
 		if (selectedTeam == null)
 		{
-			System.out.println("Sorry, that isn't a valid team entry!");
 			return;
 		}
+		events = dm.getEventsFrom(selectedTeam);
 		//print events
-		Vector<Event> events = dm.getEventsFrom(selectedTeam);
 		System.out.println("Events for " + team + ": " + events.size());
 		for (Event event : events)
 		{
@@ -160,6 +153,24 @@ public class SportsFilter {
 		int month = Integer.parseInt(rawDate[1]);
 		int day = Integer.parseInt(rawDate[2]);
 		return new Date(year - 1900, month - 1, day);
+	}
+	
+	private static Team stringToTeam(String team, Vector<Team> sports)
+	{
+		Team selectedTeam = null;
+		for(Team team_ : sports)
+		{
+			if ((team_.getGender() + "'s " + team_.getSport()).equals(team))
+			{
+				selectedTeam = team_;
+			}
+		}
+		if (selectedTeam == null)
+		{
+			System.out.println("Sorry, that isn't a valid team entry!");
+			return null;
+		}
+		return selectedTeam;
 	}
 	
 	@SuppressWarnings("deprecation")
