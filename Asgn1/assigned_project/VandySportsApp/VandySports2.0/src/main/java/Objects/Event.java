@@ -3,6 +3,13 @@ package Objects;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * @author	Nathan Walker
+ * @author	Cameron Ridgewell
+ * @author	Will Pascucci 
+ * @version	1.6
+ * @since	2014-09-21
+ */
 public class Event implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -16,6 +23,15 @@ public class Event implements Serializable {
     private String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", 
     		"September", "October", "November", "December"};
     
+    /**
+     * Creates an event object	 
+     * 
+     * @param team	the team playing in this event
+     * @param date	date of the event
+     * @param event	title of the event
+     * @param location	location of the event
+     * @param time	time of the event
+     */
     public Event(Team team, Date date, String event, String location, String time) {
         mTeam = team;
         this.date = date;
@@ -24,16 +40,30 @@ public class Event implements Serializable {
         this.time = time;
     }
     
+    /**
+     * team playing in this event
+     * 
+     * @return	team that is playing
+     */
     public Team getTeam() 
     {
     	return mTeam;
     }
     
+    /**
+     * date the event is on
+     * 
+     * @return	date of event
+     */
     public Date getDate()
     {
     	return date;
     }
     
+    /**
+     * prints the details of the event
+     * 
+     */
     @SuppressWarnings("deprecation")
 	public void printEvent()
     {
@@ -42,6 +72,9 @@ public class Event implements Serializable {
     	+ months[date.getMonth()] + " " + (date.getDate() + 1) + ", " + (date.getYear()+1900));
     }
     
+    /**
+     * prints the date of the event
+     */
     @SuppressWarnings("deprecation")
     public void printDate()
     {
@@ -49,6 +82,9 @@ public class Event implements Serializable {
     	+ months[date.getMonth()] + " " + (date.getDate() + 1) + ", " + (date.getYear()+1900));
     }
     
+    /**
+     * prints event without date
+     */
     public void printEventNoDate()
     {
     	mTeam.printTeam();

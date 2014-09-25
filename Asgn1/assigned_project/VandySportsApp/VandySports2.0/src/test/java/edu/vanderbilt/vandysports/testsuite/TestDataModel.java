@@ -9,6 +9,11 @@ import Objects.*;
 
 import org.junit.Test;
 
+/**
+ * @author	Nathan Walker  
+ * @version	1.0
+ * @since	2014-09-24
+ */
 public class TestDataModel {
 
     private static Vector<Team> testTeams = new Vector<Team>(Arrays.asList(
@@ -33,6 +38,10 @@ public class TestDataModel {
             ));
     private DataModel dm = new DataModel(testEvents);
 
+    /**
+     *  Test 
+     *  getAllEvents() method: fetches all events
+     */
     @Test
     public void testGetAllEvents() {
         assertEquals(dm.getAllEvents().size(), 10);
@@ -40,11 +49,19 @@ public class TestDataModel {
             assertNotNull(e.getTeam());
     }
 
+    /**
+     *  Test 
+     *  getAllTeams() method: fetches all teams
+     */
     @Test
     public void testGetAllTeams() {
         assertEquals(dm.getAllTeams().size(), 5);
     }
 
+    /**
+     *  Test 
+     *  getEventsOn() method: fetches all events on a given date
+     */
     @Test
     @SuppressWarnings("deprecation")
     public void testGetEventsOn() {
@@ -57,6 +74,10 @@ public class TestDataModel {
         }
     }
 
+    /**
+     *  Test 
+     *  getEventsBetween() method: fetches all events between 2 given dates
+     */
     @Test
     public void testGetEventsBetween() {
         @SuppressWarnings("deprecation")
@@ -65,6 +86,10 @@ public class TestDataModel {
         assertSame(evtsBt.get(0).getTeam(), evtsBt.get(1).getTeam());
     }
 
+    /**
+     *  Test 
+     *  getEventsFrom() method: fetches every event for a team
+     */
     @Test
     public void testGetEventsFrom() {
         for (Team t : dm.getAllTeams()) {

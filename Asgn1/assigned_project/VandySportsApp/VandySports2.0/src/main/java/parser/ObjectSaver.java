@@ -8,6 +8,11 @@ import java.util.Vector;
 
 import Objects.Event;
 
+/**
+ * @author	Fangzhou Sun  
+ * @version	1
+ * @since	2014-09-22
+ */
 public class ObjectSaver {
 	private static ObjectOutputStream oos;
 	private static ObjectInputStream ois;

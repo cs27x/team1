@@ -13,6 +13,11 @@ import java.util.Date;
 import Objects.Event;
 import Objects.Team;
 
+/**
+ * @author	Fangzhou Sun  
+ * @version	1.2
+ * @since	2014-09-22
+ */
 public class EventCrawler implements Serializable {
 
 	/**
@@ -22,22 +27,45 @@ public class EventCrawler implements Serializable {
 	private Vector<Event> listEvent;
 	private Vector<String[]> listSports;
 
+	/**
+	 *  Fetches events
+	 * 
+	 * @return 	all currently held events
+	 */
 	public Vector<Event> getListEvent() {
 		return listEvent;
 	}
 
+	/**
+	 * Sets events to passed param
+	 * @
+	 * @param listEvent	list of new events
+	 */
 	public void setListEvent(Vector<Event> listEvent) {
 		this.listEvent = listEvent;
 	}
 
+	/**
+	 * Fetches list of sports
+	 * 
+	 * @return 	all currently held sports 
+	 */
 	public Vector<String[]> getListSports() {
 		return listSports;
 	}
 
+	/**
+	 *  Sets new list of sports
+	 * 
+	 * @param listSports	list of new sports
+	 */
 	public void setListSports(Vector<String[]> listSports) {
 		this.listSports = listSports;
 	}
 
+	/**
+	 * Grabs events and sports from online
+	 */
 	public EventCrawler() {
 		listEvent = new Vector<Event>();
 		listSports = new Vector<String[]>();
@@ -51,7 +79,9 @@ public class EventCrawler implements Serializable {
 		System.out.println("Finished!");
 	}
 
-	
+	/**
+	 * Does the parsing to grab the events
+	 */
 	public void grabEvents() {
 		for (int i = 0; i < listSports.size(); i++) {
 
@@ -97,6 +127,12 @@ public class EventCrawler implements Serializable {
 		}
 	}
 
+	/**
+	 * opens a url
+	 * @
+	 * @param url		the url to be opened
+	 * @return 	returns the sources
+	 */
 	public String openURL(String url) {
 		String source = null;
 		BufferedInputStream bis;
@@ -126,6 +162,9 @@ public class EventCrawler implements Serializable {
 		return source;
 	}
 
+	/**
+	 * adds sports to sport list from url
+	 */
 	public void initURLs() {
 
 		String source = openURL("http://www.vucommodores.com/index.html");
