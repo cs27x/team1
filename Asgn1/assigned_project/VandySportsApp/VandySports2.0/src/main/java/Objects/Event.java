@@ -29,11 +29,28 @@ public class Event implements Serializable {
     	return mTeam;
     }
     
+    public Date getDate()
+    {
+    	return date;
+    }
+    
     @SuppressWarnings("deprecation")
 	public void printEvent()
     {
     	mTeam.printTeam();
-    	System.out.println("\t" + "at " + location + " on " + days[date.getDay()] + " " 
-    	+ months[date.getMonth()] + " " + (date.getDate()) + ", " + (date.getYear()+1900));
+    	System.out.println("at " + location + " on " + days[date.getDay()] + " " 
+    	+ months[date.getMonth()] + " " + (date.getDate() + 1) + ", " + (date.getYear()+1900));
+    }
+    
+    public void printDate()
+    {
+    	System.out.println(days[date.getDay()] + " " 
+    	+ months[date.getMonth()] + " " + (date.getDate() + 1) + ", " + (date.getYear()+1900));
+    }
+    
+    public void printEventNoDate()
+    {
+    	mTeam.printTeam();
+    	System.out.println("at " + location +"\n\n");
     }
 }

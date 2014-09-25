@@ -18,7 +18,7 @@ public class SportsFilter {
 			System.out.println("\n\nWhat would you like to see?\n  Please enter the number of your search type.");
 			System.out.print("\t1. Filter by Single Date\n\t2. Filter by Single Team\n\t3. See Soonest "
 					+ "Upcoming Event(s)\n\t4. See All Events\n\t5. See this Week's Events\n\t6. List of team's ESPN pages"
-					+ "\n\tEnter 0 to quit\n\nEnter Selection: ");
+					+ "\n\t7. See Calendar of events\n\tEnter 0 to quit\n\nEnter Selection: ");
 
 			int selection = scanner.nextInt();
 			scanner.nextLine();
@@ -45,6 +45,9 @@ public class SportsFilter {
 					break;
 				case 6:
 					printTeamLinks(dm);
+					break;
+				case 7:
+					getEventsCalendar(dm);
 					break;
 				default:
 					System.out.println("Invalid Entry, please try again!\n");
@@ -81,7 +84,28 @@ public class SportsFilter {
 				event.printEvent();
 			}
 		}
-	}	
+	}
+	
+	private static void getEventsCalendar(DataModel dm)
+	{
+		//print events for next calendar week
+		System.out.println("Here is a calendar of all the upcoming events");
+		Vector<Event> events = dm.getAllEvents();
+		Iterator itr = events.iterator();
+		while(itr.hasNext())
+		{
+			Event e = (Event) itr.next();
+			e.printDate();
+			Event e2 = (Event) itr.next();
+			e.printEventNoDate();
+			while(e.getDate()==e2.getDate())
+			{
+				e2.printEventNoDate();
+				e2 = (Event) itr.next();
+			}
+		}
+		
+	}
 	
 	private static void printTeamEvents(DataModel dm, Scanner scanner)
 	{
