@@ -94,7 +94,7 @@ public class SportsFilter {
 		//print events for next calendar week
 		System.out.println("Here is a calendar of all the upcoming events");
 		Vector<Event> events = dm.getAllEvents();
-		Iterator itr = events.iterator();
+		Iterator<Event> itr = events.iterator();
 		while(itr.hasNext())
 		{
 			Event e = (Event) itr.next();

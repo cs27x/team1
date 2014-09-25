@@ -18,6 +18,7 @@ public class TestDataModel {
                 new Team("Crew", "Men", "vanderbilt.edu/crew"),
                 new Team("Tennis", "Women", "vanderbilt.edu/tennis")
             ));
+    @SuppressWarnings("deprecation")
     private static Vector<Event> testEvents = new Vector<Event>(Arrays.asList(
                 new Event(testTeams.get(0), new Date(2014, 8, 24), "@ North Carolina", "Raleigh, NC", "7:30"),
                 new Event(testTeams.get(0), new Date(2014, 10, 24), "@ LSU", "Baton Rouge, LA", "5:00"),
@@ -45,6 +46,7 @@ public class TestDataModel {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testGetEventsOn() {
         Vector<Event> evtsOn = dm.getEventsOn(new Date(2014, 8, 24));
         assertEquals(evtsOn.size(), 2);
@@ -57,6 +59,7 @@ public class TestDataModel {
 
     @Test
     public void testGetEventsBetween() {
+        @SuppressWarnings("deprecation")
         Vector <Event> evtsBt = dm.getEventsBetween(new Date(2015, 1, 25), new Date(2015, 7, 28));
         assertEquals(evtsBt.size(), 2);
         assertSame(evtsBt.get(0).getTeam(), evtsBt.get(1).getTeam());

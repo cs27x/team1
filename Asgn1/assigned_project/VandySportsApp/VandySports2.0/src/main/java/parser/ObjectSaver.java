@@ -12,7 +12,8 @@ public class ObjectSaver {
 	private static ObjectOutputStream oos;
 	private static ObjectInputStream ois;
 
-	public static void main(String[] args) {
+	@SuppressWarnings("unchecked")
+    public static void main(String[] args) {
 
 		EventCrawler ec = new EventCrawler();
 		
